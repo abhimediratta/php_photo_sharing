@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title ?></title>
-	<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+	<link rel="shortcut icon" type="image/ico" href="<?php echo base_url() ?>favicon.ico" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -15,6 +15,9 @@
 	<style type="text/css">
 		.mrgn_left{
 			margin-left: 2em;
+		}
+		.mrgn_bottom{
+			margin: 0 0 1em 0;
 		}
 	</style>
 </head>

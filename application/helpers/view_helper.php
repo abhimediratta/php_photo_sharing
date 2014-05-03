@@ -2,9 +2,13 @@
 
 if ( ! function_exists('input_text'))
 {
-    function input_text($type,$name,$placeholder)
+    function input_text($type,$name,$placeholder,$length=NULL)
     {
-       $input_html='<div class="form-group"><div class="col-md-10"> <input type="'.$type.'" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" class="form-control input-md" /> </div></div>' ;
+	   	if ($length) {
+    		$input_html='<div class="form-group"><div class="col-md-10"> <input type="'.$type.'" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" class="form-control input-md" pattern=".{'.$length.',}" title="'.$length.' minimum characters"/> </div></div>' ;		
+    	}
+    	else
+	       $input_html='<div class="form-group"><div class="col-md-10"> <input type="'.$type.'" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" class="form-control input-md"/> </div></div>' ;
        return $input_html;
     }   
 }
