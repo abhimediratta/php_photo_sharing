@@ -10,17 +10,21 @@ class User_model extends CI_Model {
 	function add_new_user()
 	{
 		$this->load->library('bcrypt');
-		$pass=$this->input->post('password');
-		$hash = $this->bcrypt->hash( $pass );
+		$password=$this->input->post('password');
+		$hash = $this->bcrypt->hash($password);
 		if ( strlen( $hash ) < 20 ) {
  			//exit("Failed to hash new password");
  		}
  		else{
- 			$new_user_data = array(
-		 			'email' => $this->input->post('email'),
+ 			
+ 			$name=$this->input->post('name');
+ 			$email=$this->input->post('email');
+ 			$query="INSERT INTO USERS (name,email,password_digest) VALUES(?,?,?)";
+ 			$result=$this->db->query($query,array($name,$email,$hash));
+ 			/*$new_user_data = array('email' => $this->input->post('email'),
 		 			'name' => $this->input->post('name'),
 		 			'password_digest' => $hash );
- 			$result=$this->db->insert('users',$new_user_data);
+ 			$result=$this->db->insert('users',$new_user_data);*/
  			if ($result) {
  				return true;
  			}
