@@ -49,10 +49,10 @@ $active_group = 'default';
 $active_record = FALSE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'Abhi';
-$db['default']['password'] = 'abhi';
-$db['default']['database'] = 'Photo_Sharing';
-$db['default']['dbdriver'] = 'postgres';
+$db['default']['username'] = 'abhi';
+$db['default']['password'] = '';
+$db['default']['database'] = 'test';
+$db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -63,7 +63,6 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-$db['default']['port'] = 5432;
 
 
 /* End of file database.php */

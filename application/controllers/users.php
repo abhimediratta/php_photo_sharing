@@ -4,12 +4,16 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
-		//$this->load->view('sign_up');
+		$data['title'] = 'Photo Sharing';  
+		$data['main_content'] = 'users/login';
+		$this->load->view('view_template',$data);
 	}
 
-	public function add()
+	public function signup()
 	{
-		$this->load->view('users/add');
+		$data['title'] = 'Sign Up!';  
+		$data['main_content'] = 'users/signup';
+		$this->load->view('view_template',$data);
 	}
 }
 
