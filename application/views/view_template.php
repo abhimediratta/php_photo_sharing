@@ -22,7 +22,16 @@
 	</style>
 </head>
 <body>
-	<?php $this->load->view('view_header'); ?>
+	<?php 
+		if (isset($user)) {
+			$data['user']=$user;
+			$this->load->view('view_header',$data);
+		}
+		else{
+			$this->load->view('view_header');	
+		}
+		 
+	?>
 
 	<div class="container">
 		<?php $this->load->view($main_content); ?>
