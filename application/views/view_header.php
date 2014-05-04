@@ -9,7 +9,7 @@
       		</ul>
       		<a href="/signout"><button type="button" class="signout btn btn-default navbar-btn navbar-right ">Sign Out</button></a>
 		
-			<a href="/users/<%= current_user.id %>" class="navbar-text navbar-right" style="margin-right:15px;"><%= current_user.name %></a>
+			<a href="/photo_sharing/users/<?php echo $user->id ?>" class="navbar-text navbar-right" style="margin-right:15px;"><?php echo $user->name ?></a>
       	</div>
     <?php 
 		}
