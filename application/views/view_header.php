@@ -5,7 +5,7 @@
 	?>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       		<ul class="nav navbar-nav">
-      			<li><a href="/photos">My Photos</a></li>
+      			<li><a href="/photo_sharing/photos">My Photos</a></li>
       		</ul>
       		<a href="/signout"><button type="button" class="signout btn btn-default navbar-btn navbar-right ">Sign Out</button></a>
 		

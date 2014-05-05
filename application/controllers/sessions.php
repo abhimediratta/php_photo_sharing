@@ -5,9 +5,14 @@ class Sessions extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Photo Sharing';  
-		$data['main_content'] = 'sessions/sign_in';
-		$this->load->view('view_template',$data);
+		if (($this->user_model->is_logged_in())) {
+			redirect('users/'.$this->session->userdata('id'));
+		}
+		else{
+			$data['title'] = 'Photo Sharing';  
+			$data['main_content'] = 'sessions/sign_in';
+			$this->load->view('view_template',$data);
+		}
 	}
 
 	public function login()
@@ -21,6 +26,7 @@ class Sessions extends CI_Controller {
 					'is_logged_in'=> true
 				);
 			$this->session->set_userdata($data);
+			//$this->user_model->add_session_data($this->current_user);
 			redirect('users/'.$this->current_user->id);
 		}
 		else{

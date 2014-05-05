@@ -63,13 +63,27 @@ class Users extends CI_Controller {
 				$data['title'] = 'Details';  
 				$data['user']=$user;
 				$data['main_content'] = 'users/show';
-				$this->load->view('view_template',$data);	
+				$this->load->view('view_template',$data);
 			}
 			else{
 				show_404();
 			}
 		}
 	}
+
+	public function list_photos()
+	{
+		if (($this->user_model->is_logged_in())) {
+			$data['title'] = 'Details';  
+			$data['user']=$user;
+			$data['main_content'] = 'photos/index';
+			$this->load->view('view_template',$data);
+		}
+		else{
+			redirect('sessions');
+		}
+	}
+
 }
 
 /* End of file welcome.php */
