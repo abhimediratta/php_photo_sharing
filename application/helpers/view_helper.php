@@ -22,3 +22,12 @@ if ( ! function_exists('input_button'))
        return $input_html;
     }   
 }
+
+
+if ( ! function_exists('asset_url()'))
+{
+    function asset_url()
+    {
+      return base_url().'assets/';
+    }
+}

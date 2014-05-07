@@ -71,18 +71,6 @@ class Users extends CI_Controller {
 		}
 	}
 
-	public function list_photos()
-	{
-		if (($this->user_model->is_logged_in())) {
-			$data['title'] = 'Details';  
-			$data['user']=$user;
-			$data['main_content'] = 'photos/index';
-			$this->load->view('view_template',$data);
-		}
-		else{
-			redirect('sessions');
-		}
-	}
 
 }
 
