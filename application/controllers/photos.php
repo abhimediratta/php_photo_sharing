@@ -50,8 +50,19 @@ class Photos extends CI_Controller {
 	  			$this->load->model('photo_model');
 	  			$this->photo_model->add_photo();
 			}
+		}else{
+			redirect('sessions');
 		}
 		
+	}
+
+	public function delete_photo($id='')
+	{
+		if (($this->user_model->is_logged_in())) {
+						
+		}else{
+			redirect('sessions');
+		}
 	}
 
 }

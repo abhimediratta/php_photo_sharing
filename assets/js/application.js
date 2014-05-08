@@ -10,12 +10,14 @@ $(document).ready(function(){
 		  acceptedFiles: "image/*",
 		  maxFilesize: 1 // MB
 		};
+
 		drop_zone.on("addedfile",function(file){
 			if(file.size > 2048576){
 				alert("Please check if file size is > 1MB");
 				drop_zone.removeFile(file);
 			}
 		});
+    
 		drop_zone.on("sending",function(file,xhr,formData){
 			var csrf_token=$('[name="authencity_token"]').attr("value");
 			formData.append("authencity_token",csrf_token);

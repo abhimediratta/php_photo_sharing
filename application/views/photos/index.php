@@ -20,4 +20,4 @@
 	
 	<?php echo anchor('/photos/new',form_button('new','Add New Photos','class="btn-mrgn btn btn-info new_photo_btn"')); ?>
 </div>
-<span id="shared_album_id"><%= @shared_album.to_param %></span>
+<span id="shared_album_id"></span>

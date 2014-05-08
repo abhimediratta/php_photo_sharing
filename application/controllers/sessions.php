@@ -48,4 +48,12 @@ class Sessions extends CI_Controller {
 			return false;
 		}
 	}
+
+	public function signout()
+	{
+		if ($this->user_model->is_logged_in()) {
+			$this->session->sess_destroy();
+			redirect('login');
+		}	
+	}
 }
