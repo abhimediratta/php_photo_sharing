@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dropzone/3.8.4/css/basic.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/application.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/swipebox.min.css">
 	
 
 
@@ -41,9 +43,19 @@
 	?>
 
 	<div class="container">
-		<?php $this->load->view($main_content); ?>
+		<?php 
+			if (isset($photos)) {
+				$data['photos']=$photos;
+				$this->load->view($main_content,$data);
+			}
+			else{
+				$this->load->view($main_content);
+			}
+			
+
+		?>
 	</div>
 	<?php $this->load->view('view_footer'); ?>
-
+<script type="text/javascript" src="<?php echo asset_url();?>js/jquery.swipebox.min.js"></script>
 </body>
 </html>

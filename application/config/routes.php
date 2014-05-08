@@ -41,7 +41,7 @@
 $route['default_controller'] = "sessions";
 $route['404_override'] = "";
 $route['users/(:num)']="users/show/$1";
-$route['photos']="users/photos";
+
 $route['assets/(:any)'] = 'assets/$1';
 $route['photos/new']='photos/add_photos';
 $route['photos/upload']='photos/upload';

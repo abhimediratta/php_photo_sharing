@@ -1,14 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require APPPATH.'libraries/Cloudinary.php';
+require APPPATH.'libraries/Uploader.php';
+require APPPATH.'libraries/Api.php';
+require APPPATH.'libraries/Cloudinary_config.php';
 class Photos extends CI_Controller {
 	
-
-
 	public function index()
 	{
 		if (($this->user_model->is_logged_in())) {
+			$user=$this->user_model->getUserData($this->session->userdata('id'));
 			$this->load->model('photo_model');
-			$photo_details=$this->photo_model->find_photos($this->session->userdata('id'));
+			$photo_details=$this->photo_model->find_photos();
+			$data['photos']=$photo_details;
 			$data['title'] = 'Details';  
 			$data['user']=$user;
 			$data['main_content'] = 'photos/index';
@@ -21,11 +25,7 @@ class Photos extends CI_Controller {
 
 	public function add_photos()
 	{
-		Cloudinary::config(array( 
-  			"cloud_name" => "photo-sharing", 
-  			"api_key" => "633887252945579", 
-  			"api_secret" => "nFJuO5ToNUai_7e9S9LXgr78RFs" 
-		));	
+			
 		if (($this->user_model->is_logged_in())) {
 			$user=$this->user_model->getUserData($this->session->userdata('id'));
 
@@ -44,7 +44,14 @@ class Photos extends CI_Controller {
 
 	public function upload()
 	{
-		# code...
+		if (($this->user_model->is_logged_in())) {
+			
+			if(isset($_FILES['file'])) {
+	  			$this->load->model('photo_model');
+	  			$this->photo_model->add_photo();
+			}
+		}
+		
 	}
 
 }
