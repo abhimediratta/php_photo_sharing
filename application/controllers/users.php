@@ -56,18 +56,46 @@ class Users extends CI_Controller {
 		if (!($this->user_model->is_logged_in())) {
 			redirect('sessions');
 		}
-		else{
+		else if($id == $this->session->userdata('id')){
 			$user=$this->user_model->getUserData($id);
 			
-			if ($user && ($this->session->userdata('id') == $user->id)) {
-				$data['title'] = 'Details';  
-				$data['user']=$user;
-				$data['main_content'] = 'users/show';
-				$this->load->view('view_template',$data);
-			}
-			else{
-				show_404();
-			}
+			$data['title'] = 'Details';  
+			$data['user']=$user;
+			$data['main_content'] = 'users/show';
+			$this->load->view('view_template',$data);
+		}
+		else{
+			show_404();
+		}
+	}
+
+	public function update($id='')
+	{
+		if (!($this->user_model->is_logged_in())) {
+			redirect('sessions');
+		}
+		else if($id == $this->session->userdata('id')){
+			$user=$this->user_model->getUserData($id);
+			
+			$data['title'] = 'Details';  
+			$data['user']=$user;
+			$data['main_content'] = 'users/edit';
+			$this->load->view('view_template',$data);
+		}
+		else{
+			show_404();
+		}
+	}
+
+	public function update_user()
+	{
+		if (($this->user_model->is_logged_in())) {
+			$this->load->model('user_model');
+			$result=$this->user_model->update();
+			$redirect_to='user'.$this->session->userdata('id');
+			redirect($redirect_to);
+		}else{
+			redirect('sessions');
 		}
 	}
 

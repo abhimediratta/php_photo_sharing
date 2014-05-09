@@ -6,6 +6,12 @@ require APPPATH.'libraries/Api.php';
 require APPPATH.'libraries/Cloudinary_config.php';
 class Photos extends CI_Controller {
 	
+	function __construct() {
+ 		if (!($this->user_model->is_logged_in())) {
+ 			redirect('sessions');
+ 		}
+
+	}
 	public function index()
 	{
 		if (($this->user_model->is_logged_in())) {
@@ -60,6 +66,31 @@ class Photos extends CI_Controller {
 	{
 		if (($this->user_model->is_logged_in())) {
 						
+		}else{
+			redirect('sessions');
+		}
+	}
+
+	public function update($id='')
+	{
+		if (($this->user_model->is_logged_in())) {
+			$this->load->model('photo_model');
+			$data['photo']=$this->photo_model->get_photo_details($id);
+			$data['title'] = 'Details';
+			$data['user']=$user;
+			$data['main_content'] = 'photos/edit';
+			$this->load->view('view_template',$data);			
+		}else{
+			redirect('sessions');
+		}
+	}
+
+	public function update_photo()
+	{
+		if (($this->user_model->is_logged_in())) {
+			$this->load->model('photo_model');
+			$result=$this->photo_model->update();
+			redirect('photos');
 		}else{
 			redirect('sessions');
 		}

@@ -52,6 +52,27 @@ class User_model extends CI_Model {
  		
 	}
 
+	public function update()
+	{
+		$this->load->library('bcrypt');
+		
+		$password=$this->input->post('password');
+		$hash = $this->bcrypt->hash($password);
+		$user_id=$this->input->post('id');
+ 		$name=$this->input->post('name');
+ 		$email=$this->input->post('email');
+ 		
+ 		$query="UPDATE USERS SET name = ?,email = ?,password_digest = ? WHERE id = ?";
+ 		$result=$this->db->query($query,array($name,$email,$hash,$user_id));
+
+ 		if ($result) {
+ 			return true;
+ 		}
+ 		else{
+ 			return false;
+ 		}
+	}
+
 	public function check_unique()
 	{
 		$email=$this->input->post('email');
@@ -86,6 +107,8 @@ class User_model extends CI_Model {
  			return false;
  		}
 	}
+
+
 
 }
 

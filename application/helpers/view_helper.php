@@ -16,6 +16,16 @@ if ( ! function_exists('input_text'))
 
 if ( ! function_exists('input_button'))
 {
+    function edit_input_text($type,$name,$placeholder,$value)
+    {
+      $input_html='<div class="form-group"><div class="col-md-10"> <input type="'.$type.'" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" class="form-control input-md" value="'.$value.'" required/> </div></div>';
+      return $input_html;
+    }
+
+}
+
+if ( ! function_exists('input_button'))
+{
     function input_button($inputs)
     {
        $input_html='<div class="actions">'.$inputs.'  </div>' ;

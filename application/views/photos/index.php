@@ -5,7 +5,8 @@
 ?>
   	<div class="relative_thumbnail">
   		<?php echo anchor($photo['photo_url'], cl_image_tag($photo['photo_url'], array( "width" => 150, "height" => 150, "crop" => "pad" )),array('class'=>'swipebox')); ?>
-  		
+  		<?php echo anchor('/photos/edit/'.$photo['id'],"Edit Caption"); ?>
+  		<span class="relative_caption"><?php echo $photo['caption'] ?></span>
   	</div>
 <?php
 	}

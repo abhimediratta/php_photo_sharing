@@ -48,6 +48,14 @@
 				$data['photos']=$photos;
 				$this->load->view($main_content,$data);
 			}
+			elseif (isset($photo)) {
+				$data['photo']=$photo;
+				$this->load->view($main_content,$data);
+			}
+			elseif (isset($user)) {
+				$data['user']=$user;
+				$this->load->view($main_content,$data);
+			}
 			else{
 				$this->load->view($main_content);
 			}
