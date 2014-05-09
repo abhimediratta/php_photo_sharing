@@ -42,11 +42,13 @@ $route['default_controller'] = "sessions";
 $route['login']='sessions';
 $route['404_override'] = "";
 $route['users/(:num)']="users/show/$1";
+$route['users/edit/(:num)']='users/update/$1';
 $route['signout']='sessions/signout';
 $route['assets/(:any)'] = 'assets/$1';
 $route['photos/new']='photos/add_photos';
 $route['photos/upload']='photos/upload';
-$route['photos/delete/(:num)']='photos/delete/$1';
+$route['photos/delete/(:num)']='photos/delete_photo/$1';
+$route['photos/edit/(:num)']='photos/update/$1';
 
 
 /* End of file routes.php */

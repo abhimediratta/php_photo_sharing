@@ -1,3 +1,15 @@
+body{
+  padding:0 0 40px 0;
+}
+
+#shared_album_id{
+	display: none;
+}
+
+.btn-mrgn{
+	margin: 10px 10px 10px 0;
+}
+
 .relative_thumbnail{
 	position: relative;
 	float: left;

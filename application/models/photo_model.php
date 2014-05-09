@@ -4,7 +4,7 @@ class Photo_model extends CI_Model {
 	public function find_photos()
 	{
 		$user_id=$this->session->userdata('id');
-		$query="SELECT id,photo_url FROM photos WHERE user_id = ?";
+		$query="SELECT id,photo_url,caption FROM photos WHERE user_id = ?";
 		$query_result=$this->db->query($query,array($user_id));
 		$result=$query_result->result_array();
 		return $result;
@@ -24,8 +24,8 @@ class Photo_model extends CI_Model {
 	public function get_photo_details($id='')
 	{
 		$query="SELECT id,photo_url,caption FROM photos WHERE id = ? LIMIT 1";
-		$result=$this->db->query($query,array($user_id))->row();
-
+		$result=$this->db->query($query,array($id))->row();
+		
 		return $result;
 	}
 
@@ -33,12 +33,19 @@ class Photo_model extends CI_Model {
 	{
 		$query="UPDATE photos SET caption = ? WHERE id = ?";
 		$id=$this->input->post('id');
-		$result=$this->db->query($query,array($id));
+		$caption=$this->input->post('caption');
+		$result=$this->db->query($query,array($caption,$id));
 		if ($result) {
 			return true;
 		}
 		else{
 			return false;
 		}
+	}
+
+	public function delete($id)
+	{
+		$query="DELETE FROM photos WHERE id = ?";
+		$result=$this->db->query($query,array($id));
 	}
 }

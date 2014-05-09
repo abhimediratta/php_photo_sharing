@@ -2,6 +2,12 @@
 $(document).ready(function(){
 	var drop_zone;
   /*ajax_loader=$('#ajax-loader');*/
+  $('.delete').click(function () {
+    var confirm_delete=confirm("Are you sure?");
+    if (!confirm_delete) {
+      return false;
+    };
+  });
 	$('.swipebox' ).swipebox();
   
 	if ($('#image_upload').length > 0) {

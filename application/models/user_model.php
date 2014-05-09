@@ -8,7 +8,7 @@ class User_model extends CI_Model {
 	}
 	public function getUserData($id='')
 	{
-		$query="SELECT name,id FROM USERS WHERE id = ? LIMIT 1";
+		$query="SELECT name,id,email FROM USERS WHERE id = ? LIMIT 1";
 		$result=$this->db->query($query,array($id));
 		if ($result->num_rows() > 0) {
 			$user=$result->row();

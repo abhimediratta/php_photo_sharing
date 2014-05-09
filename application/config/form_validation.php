@@ -34,5 +34,27 @@ $config = array(
                                         'rules' => 'trim|required'
                                     )
 
-                                )
+                                ),
+            'users/update_user' => array(
+                                    array(
+                                            'field' => 'name',
+                                            'label' => 'name',
+                                            'rules' => 'trim|required|xss_clean'
+                                         ),
+                                    array(
+                                            'field' => 'password',
+                                            'label' => 'password',
+                                            'rules' => 'trim|required|min_length[6]'
+                                         ),
+                                    array(
+                                            'field' => 'password_confirmation',
+                                            'label' => 'password confirmation',
+                                            'rules' => 'trim|required|matches[password]'
+                                         ),
+                                    array(
+                                            'field' => 'email',
+                                            'label' => 'Email',
+                                            'rules' => 'trim|required|valid_email|xss_clean'
+                                         )
+                                    )
                );

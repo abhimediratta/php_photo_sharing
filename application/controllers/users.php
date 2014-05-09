@@ -19,7 +19,6 @@ class Users extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="bg-danger mrgn_bottom">', '</div>');
 		
 		if ($this->form_validation->run()) {
-			$this->load->model('user_model');
 			
 			if ($this->user_model->add_new_user()) {
 				redirect('users');
@@ -89,11 +88,25 @@ class Users extends CI_Controller {
 
 	public function update_user()
 	{
-		if (($this->user_model->is_logged_in())) {
+		if (($this->user_model->is_logged_in()) && ($this->session->userdata('id') == $this->input->post('id'))) {
 			$this->load->model('user_model');
-			$result=$this->user_model->update();
-			$redirect_to='user'.$this->session->userdata('id');
-			redirect($redirect_to);
+			$this->load->library('form_validation');
+			$this->form_validation->set_error_delimiters('<div class="bg-danger mrgn_bottom">', '</div>');
+			if ($this->form_validation->run()) {
+				$result=$this->user_model->update();
+				$redirect_to='users/'.$this->session->userdata('id');
+				redirect($redirect_to);	
+			}
+			else{
+				/*$redirect_to='users/edit/'.$this->session->userdata('id');
+				redirect($redirect_to);	*/
+				$user=$this->user_model->getUserData($this->session->userdata('id'));
+				$data['title'] = 'Sign Up!';
+				$data['user']=$user;  
+				$data['main_content'] = 'users/edit';
+				$this->load->view('view_template',$data);
+			}		
+			
 		}else{
 			redirect('sessions');
 		}

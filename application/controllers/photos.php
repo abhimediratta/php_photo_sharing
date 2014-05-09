@@ -7,6 +7,7 @@ require APPPATH.'libraries/Cloudinary_config.php';
 class Photos extends CI_Controller {
 	
 	function __construct() {
+		parent::__construct();
  		if (!($this->user_model->is_logged_in())) {
  			redirect('sessions');
  		}
@@ -65,7 +66,9 @@ class Photos extends CI_Controller {
 	public function delete_photo($id='')
 	{
 		if (($this->user_model->is_logged_in())) {
-						
+			$this->load->model('photo_model');
+			$this->photo_model->delete($id);
+			redirect('photos');
 		}else{
 			redirect('sessions');
 		}
@@ -74,9 +77,10 @@ class Photos extends CI_Controller {
 	public function update($id='')
 	{
 		if (($this->user_model->is_logged_in())) {
+			$user=$this->user_model->getUserData($this->session->userdata('id'));
 			$this->load->model('photo_model');
 			$data['photo']=$this->photo_model->get_photo_details($id);
-			$data['title'] = 'Details';
+			$data['title'] = 'Edit Caption';
 			$data['user']=$user;
 			$data['main_content'] = 'photos/edit';
 			$this->load->view('view_template',$data);			
