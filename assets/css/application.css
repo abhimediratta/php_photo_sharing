@@ -45,3 +45,7 @@ body{
 	clear: both;
 	display: block;
 }
+
+.bg-danger,.bg-success{
+	width: 30%;
+}

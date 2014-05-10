@@ -23,7 +23,7 @@ class Photo_model extends CI_Model {
 
 	public function get_photo_details($id='')
 	{
-		$query="SELECT id,photo_url,caption FROM photos WHERE id = ? LIMIT 1";
+		$query="SELECT * FROM photos WHERE id = ? LIMIT 1";
 		$result=$this->db->query($query,array($id))->row();
 		
 		return $result;

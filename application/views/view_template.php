@@ -44,6 +44,16 @@
 
 	<div class="container">
 		<?php 
+			if ($this->session->flashdata('danger')) {
+				echo '<div class="bg-danger">'.$this->session->flashdata('danger').'</div>';
+			}
+			else if($this->session->flashdata('success')){
+				echo '<div class="bg-success">'.$this->session->flashdata('success').'</div>';;
+			}
+				
+		?>
+		<!-- <div class="bg-"><%= value %></div> -->
+		<?php 
 			if (isset($photos)) {
 				$data['photos']=$photos;
 				$this->load->view($main_content,$data);

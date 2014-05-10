@@ -6,6 +6,9 @@
 
 	echo input_text('text','email','Email');
 	echo input_text('password','password','Password');
+	echo form_checkbox('remember_me', 'remember', false);
+	echo form_label('Remember me', 'username');
+	
 	echo input_button(form_submit('login', 'Login',"class='btn btn-primary'"));
 	
 	

@@ -19,7 +19,7 @@ class User_model extends CI_Model {
 		}
 	}
 
-	function is_logged_in(){
+	public function is_logged_in(){
 		$is_logged_in = $this->session->userdata('is_logged_in');
 		if(!isset($is_logged_in) || $is_logged_in != true)
 		{				
@@ -28,6 +28,7 @@ class User_model extends CI_Model {
 			return true;
 		}		
 	}
+
 
 	function add_new_user()
 	{
@@ -39,11 +40,14 @@ class User_model extends CI_Model {
  		$email=$this->input->post('email');
  		$query="INSERT INTO USERS (name,email,password_digest) VALUES(?,?,?)";
  		$result=$this->db->query($query,array($name,$email,$hash));
- 		/*$new_user_data = array('email' => $this->input->post('email'),
-					'name' => $this->input->post('name'),
-		 			'password_digest' => $hash );
- 		$result=$this->db->insert('users',$new_user_data);*/
+ 		
  		if ($result) {
+ 			$check_email_query="SELECT id FROM USERS WHERE email = ? LIMIT 1";
+ 			$check_email=$this->db->query($check_email_query,array($email))->row();
+ 			$data=array('id'=>$check_email->id,
+ 						'is_logged_in'=> true
+ 						);
+ 			$this->session->set_userdata($data);
  			return true;
  		}
  		else{
@@ -106,6 +110,20 @@ class User_model extends CI_Model {
  		else{
  			return false;
  		}
+	}
+
+	public function get_session_cookie()
+	{
+		$cookie_data = get_cookie('ph');		
+		$value = unserialize($cookie_data);
+		$user_id = $value['id'];
+		$data=array(
+					'id'=>$user_id,
+					'is_logged_in'=> true
+				);
+		if(!$this->session->set_userdata($data)){					
+			$this->session->set_userdata($data);
+		}
 	}
 
 

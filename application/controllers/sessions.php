@@ -25,8 +25,25 @@ class Sessions extends CI_Controller {
 					'id'=> $this->current_user->id,
 					'is_logged_in'=> true
 				);
+			$check_box = $this->input->post('remember_me');
+			print_r("abskdjbaskjdbkjadb");
 			$this->session->set_userdata($data);
-			//$this->user_model->add_session_data($this->current_user);
+			if ($check_box == "remember") {
+
+				$this->load->helper('cookie');
+				$cookie_data=serialize($data);
+				$cookie = array(
+						    'name' => 'ph',
+						    'value'  => $cookie_data,
+						    'expire' => '60*60*24*365',
+						    'domain' => 'noobonline.com',
+						    'path'   => '/',
+						    'prefix' => '',		    
+						    'secure' => false
+						  );
+				set_cookie($cookie);
+			}
+			$this->session->set_flashdata('success', 'Welcome!');
 			redirect('users/'.$this->current_user->id);
 		}
 		else{

@@ -2,6 +2,11 @@
 
 class Users extends CI_Controller {
 
+	function __construct(){
+		parent::__construct();
+		
+	}
+
 	public function index()
 	{
 		
@@ -9,9 +14,15 @@ class Users extends CI_Controller {
 
 	public function signup()
 	{
-		$data['title'] = 'Sign Up!';  
-		$data['main_content'] = 'users/signup';
-		$this->load->view('view_template',$data);
+		if (($this->user_model->is_logged_in())) {
+			$this->session->set_flashdata('danger', 'You are already signed in!');
+			redirect('users/'.$this->session->userdata('id'));
+		}
+		else{
+			$data['title'] = 'Sign Up!';  
+			$data['main_content'] = 'users/signup';
+			$this->load->view('view_template',$data);
+		}
 	}
 
 	public function add_user(){
@@ -21,7 +32,7 @@ class Users extends CI_Controller {
 		if ($this->form_validation->run()) {
 			
 			if ($this->user_model->add_new_user()) {
-				redirect('users');
+				redirect('users/'.$this->session->userdata('id'));
 			}
 			else{
 				$data['title'] = 'Sign Up!';  
@@ -53,7 +64,7 @@ class Users extends CI_Controller {
 	public function show($id)
 	{
 		if (!($this->user_model->is_logged_in())) {
-			redirect('sessions');
+			redirect('/');
 		}
 		else if($id == $this->session->userdata('id')){
 			$user=$this->user_model->getUserData($id);
@@ -71,7 +82,7 @@ class Users extends CI_Controller {
 	public function update($id='')
 	{
 		if (!($this->user_model->is_logged_in())) {
-			redirect('sessions');
+			redirect('/');
 		}
 		else if($id == $this->session->userdata('id')){
 			$user=$this->user_model->getUserData($id);
@@ -108,7 +119,7 @@ class Users extends CI_Controller {
 			}		
 			
 		}else{
-			redirect('sessions');
+			redirect('/');
 		}
 	}
 
