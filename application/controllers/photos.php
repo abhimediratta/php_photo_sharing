@@ -14,42 +14,7 @@ class Photos extends CI_Controller {
  		}
 
 	}
-	public function index()
-	{
-			$user=$this->user_model->getUserData($this->session->userdata('id'));
-			$this->load->model('photo_model');
-			$photo_details=$this->photo_model->find_photos();
-			$data['photos']=$photo_details;
-			$data['title'] = 'Photos';  
-			$data['user']=$user;
-			$data['main_content'] = 'photos/index';
-			$this->load->view('view_template',$data);
-	}
-
-	public function add_photos()
-	{
-			
-			$user=$this->user_model->getUserData($this->session->userdata('id'));
-
-			$this->load->model('photo_model');
-			$photo_details=$this->photo_model->find_photos($this->session->userdata('id'));
-
-			$data['title'] = 'New Photo';  
-			$data['user']=$user;
-			$data['main_content'] = 'photos/new';
-			$this->load->view('view_template',$data);
-	}
-
-	public function upload()
-	{
-			
-			if(isset($_FILES['file'])) {
-	  			$this->load->model('photo_model');
-	  			$this->photo_model->add_photo();
-			}
-		
-	}
-
+	
 	public function delete_photo($id='')
 	{
 			$this->load->model('photo_model');

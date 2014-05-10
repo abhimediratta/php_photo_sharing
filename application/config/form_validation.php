@@ -56,5 +56,12 @@ $config = array(
                                             'label' => 'Email',
                                             'rules' => 'trim|required|valid_email|xss_clean'
                                          )
+                                    ),
+            'albums/add_album' => array(
+                                    array(
+                                            'field'=>'title',
+                                            'label' => 'Title',
+                                            'rules' => 'trim|required'
+                                        )
                                     )
                );

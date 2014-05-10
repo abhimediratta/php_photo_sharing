@@ -11,7 +11,7 @@ $(document).ready(function(){
 	$('.swipebox' ).swipebox();
   
 	if ($('#image_upload').length > 0) {
-		drop_zone=new Dropzone("#image_upload",{url: "/photo_sharing/photos/upload",enqueueForUpload: true});
+		drop_zone=new Dropzone("#image_upload",{url: "/photo_sharing/albums/upload",enqueueForUpload: true});
 		Dropzone.options.drop_zone = {
 		  acceptedFiles: "image/*",
 		  maxFilesize: 1 // MB

@@ -49,6 +49,9 @@ $route['photos/new']='photos/add_photos';
 $route['photos/upload']='photos/upload';
 $route['photos/delete/(:num)']='photos/delete_photo/$1';
 $route['photos/edit/(:num)']='photos/update/$1';
+$route['albums/(:num)']='albums/show/$1';
+$route['albums/upload']='albums/upload';
+$route['albums/new']='albums/new_album';
 
 
 /* End of file routes.php */

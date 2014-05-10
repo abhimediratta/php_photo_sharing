@@ -29,17 +29,35 @@
 		}
 	</style>
 </head>
+<?php 
+			if (isset($photos)) {
+				$data['photos']=$photos;
+				
+			}
+			if (isset($photo)) {
+				$data['photo']=$photo;
+			}
+
+			if (isset($user)) {
+				$data['user']=$user;
+			}
+
+			if (isset($album_id)) {
+				$data['album_id']=$album_id;
+			}
+			if (isset($album_photos)) {
+				$data['album_photos']=$album_photos;
+			}
+			if (isset($albums)) {
+				$data['albums']=$albums;
+			}
+			$data['']='';
+?>
+
 
 <body>
 	<?php 
-		if (isset($user)) {
-			$data['user']=$user;
-			$this->load->view('view_header',$data);
-		}
-		else{
-			$this->load->view('view_header');	
-		}
-		 
+		$this->load->view('view_header',$data);
 	?>
 
 	<div class="container">
@@ -52,26 +70,10 @@
 			}
 				
 		?>
-		<!-- <div class="bg-"><%= value %></div> -->
 		<?php 
-			if (isset($photos)) {
-				$data['photos']=$photos;
-				$this->load->view($main_content,$data);
-			}
-			elseif (isset($photo)) {
-				$data['photo']=$photo;
-				$this->load->view($main_content,$data);
-			}
-			elseif (isset($user)) {
-				$data['user']=$user;
-				$this->load->view($main_content,$data);
-			}
-			else{
-				$this->load->view($main_content);
-			}
-			
-
+			$this->load->view($main_content,$data);
 		?>
+
 	</div>
 	<?php $this->load->view('view_footer'); ?>
 <script type="text/javascript" src="<?php echo asset_url();?>js/jquery.swipebox.min.js"></script>

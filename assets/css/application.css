@@ -25,6 +25,10 @@ body{
 	bottom: -20px;
 	right: 10px;
 }
+.relative_more{
+	font-size: 15px;
+	margin-left: 20px;
+}
 
 .relative_caption{
 	text-align: center;
@@ -48,4 +52,12 @@ body{
 
 .bg-danger,.bg-success{
 	width: 30%;
+}
+
+.display_album{
+	margin-top: 40px;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;    
 }

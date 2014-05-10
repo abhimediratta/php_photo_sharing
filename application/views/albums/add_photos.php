@@ -1,9 +1,10 @@
 <fieldset class="col-md-10">
-	<legend>Sign up </legend>
+	<legend>Add Photos</legend>
 <?php 
 	
 	echo validation_errors();
-	echo form_open_multipart('photos/upload',array('class'=>'dropzone','id' => 'image_upload'));
+	echo form_open_multipart('albums/upload',array('class'=>'dropzone','id' => 'image_upload'));
+	echo form_hidden('album_id', $album_id);
 ?>
 	<div class="fallback">
     	<input type="file" name="file" multiple/>
