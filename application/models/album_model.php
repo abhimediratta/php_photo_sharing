@@ -15,9 +15,21 @@ class Album_model extends CI_Model {
 	{
 		$user_id=$user_id=$this->session->userdata('id');
 		$query="SELECT * FROM photos WHERE user_id = ? and album_id = ?";
-		$query_result=$this->db->query($query,array($user_id,$album_id))->result_array();
+		$query_result=$this->db->query($query,array($user_id,$album_id));
+		return $query_result->result_array();
+	}
 
-		return $query_result;
+	public function check_album($album_id='')
+	{
+		$user_id=$user_id=$this->session->userdata('id');
+		$query="SELECT * FROM albums WHERE user_id = ? and id = ?";
+		$query_result=$this->db->query($query,array($user_id,$album_id));
+		if ($query_result->num_rows() > 0) {
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public function find_albums()
