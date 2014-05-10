@@ -55,16 +55,6 @@ class Albums extends CI_Controller {
 		}
 	}
 
-	public function add_photos($album_id='')
-	{
-		$user=$this->user_model->getUserData($this->session->userdata('id'));
-		$data['album_id']=$album_id;
-		$data['title'] = 'New Photo';
-		$data['user']=$user;
-		$data['main_content'] = 'albums/add_photos';
-		$this->load->view('view_template',$data);
-	}
-
 	public function upload()
 	{
 		if(isset($_FILES['file'])) {
