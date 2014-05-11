@@ -109,8 +109,7 @@ class Users extends CI_Controller {
 				redirect($redirect_to);	
 			}
 			else{
-				/*$redirect_to='users/edit/'.$this->session->userdata('id');
-				redirect($redirect_to);	*/
+				
 				$user=$this->user_model->getUserData($this->session->userdata('id'));
 				$data['title'] = 'Sign Up!';
 				$data['user']=$user;  

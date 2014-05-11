@@ -21,12 +21,13 @@ class Sessions extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="bg-danger mrgn_bottom">', '</div>');
 
 		if ($this->form_validation->run()) {
+			
 			$data=array(
 					'id'=> $this->current_user->id,
-					'is_logged_in'=> true
+					'is_logged_in'=> true,
+					'name'=> $this->current_user->name
 				);
 			$check_box = $this->input->post('remember_me');
-			print_r("abskdjbaskjdbkjadb");
 			$this->session->set_userdata($data);
 			if ($check_box == "remember") {
 
@@ -55,7 +56,6 @@ class Sessions extends CI_Controller {
 
 	public function _authenticate_user()
 	{
-		$this->load->model('user_model');
 		$this->current_user=$this->user_model->check_credentials();
 		if ($this->current_user) {
 			return true;

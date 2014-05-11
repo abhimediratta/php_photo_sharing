@@ -16,21 +16,17 @@ class Albums extends CI_Controller {
 
 	public function index()
 	{
-		$user=$this->user_model->getUserData($this->session->userdata('id'));
 		$this->load->model('album_model');
 		$albums=$this->album_model->find_albums();
 		$data['albums']=$albums;
 		$data['title'] = 'Albums';  
-		$data['user']=$user;
 		$data['main_content'] = 'albums/index';
 		$this->load->view('view_template',$data);
 	}
 
 	public function new_album()
 	{
-		$user=$this->user_model->getUserData($this->session->userdata('id'));
 		$data['title'] = 'New Album';
-		$data['user']=$user;
 		$data['main_content'] = 'albums/new';
 		$this->load->view('view_template',$data);
 	}
@@ -52,7 +48,6 @@ class Albums extends CI_Controller {
 		}
 		else{
 			$data['title'] = 'New Album';
-			$data['user']=$user;
 			$data['main_content'] = 'albums/new';
 			$this->load->view('view_template',$data);
 		}
@@ -68,7 +63,6 @@ class Albums extends CI_Controller {
 
 	public function show($album_id='')
 	{
-		$user=$this->user_model->getUserData($this->session->userdata('id'));
 		$this->load->model('album_model');
 		$album_photos=$this->album_model->find_album_photos($album_id);
 		if ($album_photos || $this->album_model->check_album($album_id)) {
@@ -76,7 +70,6 @@ class Albums extends CI_Controller {
 			$data['album_id']=$album_id;
 			$data['album_photos']=$album_photos;
 			$data['title'] = $album_title;
-			$data['user']=$user;
 			$data['main_content'] = 'albums/show';
 			$this->load->view('view_template',$data);	
 		}

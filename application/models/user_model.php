@@ -45,7 +45,8 @@ class User_model extends CI_Model {
  			$check_email_query="SELECT id FROM USERS WHERE email = ? LIMIT 1";
  			$check_email=$this->db->query($check_email_query,array($email))->row();
  			$data=array('id'=>$check_email->id,
- 						'is_logged_in'=> true
+ 						'is_logged_in'=> true,
+ 						'name' => $name
  						);
  			$this->session->set_userdata($data);
  			return true;

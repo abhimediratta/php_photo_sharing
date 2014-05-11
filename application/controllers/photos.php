@@ -30,10 +30,8 @@ class Photos extends CI_Controller {
 		$this->load->model('photo_model');
 		$photo=$this->photo_model->get_photo_details($id);
 		if ($photo->user_id == $this->session->userdata('id')) {
-			$user=$this->user_model->getUserData($this->session->userdata('id'));
 			$data['photo']=$photo;
 			$data['title'] = 'Edit Caption';
-			$data['user']=$user;
 			$data['main_content'] = 'photos/edit';
 			$this->load->view('view_template',$data);
 		}
