@@ -52,6 +52,7 @@ $route['photos/edit/(:num)']='photos/update/$1';
 $route['albums/(:num)']='albums/show/$1';
 $route['albums/upload']='albums/upload';
 $route['albums/new']='albums/new_album';
+$route['shared_albums/(:any)']='shared_albums/show/$1';
 
 
 /* End of file routes.php */

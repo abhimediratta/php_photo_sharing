@@ -40,4 +40,5 @@
 	</span>
 	
 </div>
-<span id="shared_album_id"></span>
+			
+<span id="shared_album_id"><?php echo $shared_album_id ?></span>

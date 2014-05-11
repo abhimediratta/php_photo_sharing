@@ -39,6 +39,8 @@ class Albums extends CI_Controller {
 			$this->load->model('album_model');
 			$check=$this->album_model->create();
 			if ($check) {
+				$this->load->model('shared_album_model');
+				$this->shared_album_model->add_shared_album($this->db->insert_id());
 				$this->session->set_flashdata('success', 'Album created');
 				redirect('/albums/'.$this->db->insert_id());
 			}
@@ -66,7 +68,9 @@ class Albums extends CI_Controller {
 		$this->load->model('album_model');
 		$album_photos=$this->album_model->find_album_photos($album_id);
 		if ($album_photos || $this->album_model->check_album($album_id)) {
+			$shared_album_id=$this->album_model->get_shared_album_url($album_id);
 			$album_title=$this->album_model->get_title($album_id);
+			$data['shared_album_id']=$shared_album_id;
 			$data['album_id']=$album_id;
 			$data['album_photos']=$album_photos;
 			$data['title'] = $album_title;

@@ -66,5 +66,16 @@ class Album_model extends CI_Model {
 		return $query_result->title;
 	}
 
+	public function get_shared_album_url($album_id='')
+	{
+		$this->load->library('encrypt');
+		$query="SELECT id FROM shared_albums WHERE album_id = ? LIMIT 1";
+		$query_result=$this->db->query($query,array($album_id))->row();
+		$encrypted=base64_encode($query_result->id);
+		
+		$encrypted=urlencode($encrypted);
+		return $encrypted;
+	}
+
 }
 

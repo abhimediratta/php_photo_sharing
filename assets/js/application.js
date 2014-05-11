@@ -62,16 +62,16 @@ $(document).ready(function(){
 });
 
 function post_api(){
-  ajax_loader.show();
+  //ajax_loader.show();
   var album_id=$("#shared_album_id").html();
-  var share_url="https://photo-sharing-direct.herokuapp.com/shared_albums/"+album_id;
+  var share_url="http://local.foo.com/photo_sharing/shared_albums/"+album_id;
     FB.ui({
       method: 'feed',
       link: share_url,
       name: 'Photo Sharing',
       caption: 'Test app'
     }, function(response){
-      ajax_loader.hide();
+      //ajax_loader.hide();
       $('.thumbnail_container').fadeTo(400,1);
       if (!response || response.error) {
         alert(response.error.message);
