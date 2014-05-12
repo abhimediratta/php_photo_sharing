@@ -8,7 +8,7 @@
 		echo edit_input_text('email','email','Email',$user->email);
 		echo input_text('password','password','Password',6);
 		echo input_text('password','password_confirmation','Password Confirmation',6);
-		echo input_button(form_submit('update', 'Update',"class='btn btn-success'").anchor('photos', 'Cancel', "class='btn btn-info mrgn_left'"));
+		echo input_button(form_submit('update', 'Update',"class='btn btn-success'").anchor('/', 'Cancel', "class='btn btn-info mrgn_left'"));
 		echo form_close();
 	?>
 </fieldset>
