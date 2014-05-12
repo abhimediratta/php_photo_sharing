@@ -6,7 +6,7 @@
 		echo form_open('photos/update_photo',array('class' => 'form-horizontal'));
 		echo form_hidden('id', $photo->id);
 		echo edit_input_text('text','caption','Add caption',$photo->caption);
-		echo input_button(form_submit('update', 'Update',"class='btn btn-success'").anchor('photo_sharing/photos', 'Cancel', "class='btn btn-info mrgn_left'"));
+		echo input_button(form_submit('update', 'Update',"class='btn btn-success'").anchor('photos', 'Cancel', "class='btn btn-info mrgn_left'"));
 		echo form_close();
 	?>
 </fieldset>

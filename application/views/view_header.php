@@ -6,9 +6,9 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       		<ul class="nav navbar-nav">
       			<li>
-      				<a href="/photo_sharing/albums">Albums</a>
+      				<a href="/albums">Albums</a>
       			</li>
-      			<li><a href="/photo_sharing/albums/new">New Album</a></li>
+      			<li><a href="/albums/new">New Album</a></li>
       		</ul>
       		
 		
@@ -16,8 +16,8 @@
 				<li class="dropdown">
           			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('name') ?><b class="caret"></b></a>
           			<ul class="dropdown-menu">
-          				<li><a href="/photo_sharing/users/<?php echo $this->session->userdata('id') ?>" style="">Profile</a></li>		
-          				<li><a href="/photo_sharing/signout" class="signout">Sign Out</a></li>
+          				<li><a href="/users/<?php echo $this->session->userdata('id') ?>" style="">Profile</a></li>		
+          				<li><a href="/signout" class="signout">Sign Out</a></li>
           			</ul>
 				
 				</li>
