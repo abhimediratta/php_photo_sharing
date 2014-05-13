@@ -27,9 +27,9 @@ class Sessions extends CI_Controller {
 					'is_logged_in'=> true,
 					'name'=> $this->current_user->name
 				);
-			$check_box = $this->input->post('remember_me');
+			//$check_box = $this->input->post('remember_me');
 			$this->session->set_userdata($data);
-			if ($check_box == "remember") {
+			/*if ($check_box == "remember") {
 
 				$this->load->helper('cookie');
 				$cookie_data=serialize($data);
@@ -43,7 +43,7 @@ class Sessions extends CI_Controller {
 						    'secure' => false
 						  );
 				set_cookie($cookie);
-			}
+			}*/
 			$this->session->set_flashdata('success', 'Welcome!');
 			redirect('users/'.$this->current_user->id);
 		}
