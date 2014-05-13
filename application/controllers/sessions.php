@@ -19,7 +19,8 @@ class Sessions extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="bg-danger mrgn_bottom">', '</div>');
-
+		$check_box12 = $this->input->post('remember_me');
+			print_r($check_box12);
 		if ($this->form_validation->run()) {
 			
 			$data=array(
@@ -27,9 +28,9 @@ class Sessions extends CI_Controller {
 					'is_logged_in'=> true,
 					'name'=> $this->current_user->name
 				);
-			$check_box = $this->input->post('remember_me');
+			
 			$this->session->set_userdata($data);
-			if ($check_box == "remember") {
+			/*if ($check_box == "remember") {
 
 				$this->load->helper('cookie');
 				$cookie_data=serialize($data);
@@ -37,13 +38,13 @@ class Sessions extends CI_Controller {
 						    'name' => 'ph',
 						    'value'  => $cookie_data,
 						    'expire' => '60*60*24*365',
-						    'domain' => 'noobonline.com',
-						    'path'   => '/',
+						    'domain' => 'local.foo.com',
+						    'path'   => '/photo_sharing',
 						    'prefix' => '',		    
 						    'secure' => false
 						  );
-				set_cookie($cookie);
-			}
+				set_cookie('ph',$cookie_data,time()+60*60*60*24*30,'/');
+			}*/
 			$this->session->set_flashdata('success', 'Welcome!');
 			redirect('users/'.$this->current_user->id);
 		}
