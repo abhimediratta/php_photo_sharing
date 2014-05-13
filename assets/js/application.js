@@ -64,7 +64,7 @@ $(document).ready(function(){
 function post_api(){
   //ajax_loader.show();
   var album_id=$("#shared_album_id").html();
-  var share_url="http://php-photosharing.rhcloud.com/shared_albums/"+album_id;
+  var share_url="http://local.foo.com/photo_sharing/shared_albums/"+album_id;
     FB.ui({
       method: 'feed',
       link: share_url,
