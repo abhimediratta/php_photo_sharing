@@ -23,7 +23,7 @@
 	foreach ($album_photos as $photo) {
 ?>
   	<div class="relative_thumbnail">
-  		<?php echo anchor($photo['photo_url'], cl_image_tag($photo['photo_url'], array( "width" => 150, "height" => 150, "crop" => "pad" )),array('class'=>'swipebox')); ?>
+  		<?php echo anchor($photo['photo_url'], cl_image_tag($photo['photo_url'], array( "width" => 150, "height" => 150, "crop" => "pad" )),array('class'=>'swipebox','title'=>$photo['caption'])); ?>
   		<?php echo anchor('/photos/edit/'.$photo['id'],"Edit Caption",array('class'=>'relative_edit')); ?>
   		<?php echo anchor('/photos/delete/'.$photo['id'],"Delete",array('class'=>'relative_delete delete')); ?>
   		<span class="relative_caption"><?php echo $photo['caption'] ?></span>
