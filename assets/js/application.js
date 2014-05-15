@@ -22,6 +22,11 @@ $(document).ready(function(){
 				alert("Please check if file size is > 1MB");
 				drop_zone.removeFile(file);
 			}
+      if (file.type.indexOf("image") === -1) {
+        drop_zone.removeFile(file);
+        alert("Only images allowed");
+        
+      }
 		});
     
 		drop_zone.on("sending",function(file,xhr,formData){
