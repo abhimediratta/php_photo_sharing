@@ -11,17 +11,22 @@ $(document).ready(function(){
 	$('.swipebox' ).swipebox();
   
 	if ($('#image_upload').length > 0) {
+    Dropzone.options.drop_zone = {
+      acceptedFiles: "image/*",
+      maxFilesize: 1 // MB
+    };
 		drop_zone=new Dropzone("#image_upload",{url: "/albums/upload",enqueueForUpload: true});
-		Dropzone.options.drop_zone = {
-		  acceptedFiles: "image/*",
-		  maxFilesize: 1 // MB
-		};
+		
 
 		drop_zone.on("addedfile",function(file){
 			if(file.size > 2048576){
 				alert("Please check if file size is > 1MB");
 				drop_zone.removeFile(file);
 			}
+      if (file.type.indexOf("image") === -1) {
+        alert("Only images allowed");
+        drop_zone.removeFile(file);
+      };
 		});
     
 		drop_zone.on("sending",function(file,xhr,formData){
