@@ -13,9 +13,8 @@ class Album_model extends CI_Model {
 
 	public function find_album_photos($album_id='')
 	{
-		$user_id=$user_id=$this->session->userdata('id');
-		$query="SELECT * FROM photos WHERE user_id = ? and album_id = ?";
-		$query_result=$this->db->query($query,array($user_id,$album_id));
+		$query="SELECT * FROM photos WHERE album_id = ?";
+		$query_result=$this->db->query($query,array($album_id));
 		return $query_result->result_array();
 	}
 
