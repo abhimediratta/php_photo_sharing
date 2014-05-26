@@ -15,7 +15,7 @@ $(document).ready(function(){
       acceptedFiles: "image/*",
       maxFilesize: 1 // MB
     };
-		drop_zone=new Dropzone("#image_upload",{url: "/albums/upload",enqueueForUpload: true});
+		drop_zone=new Dropzone("#image_upload",{url: "/photo_sharing/albums/upload",enqueueForUpload: true});
 		
 
 		drop_zone.on("addedfile",function(file){
@@ -38,6 +38,10 @@ $(document).ready(function(){
 		drop_zone.on("success",function(file,response){
 //			ajax_loader.hide();
 			$('#image_upload').fadeTo(400,1);
+      if (response.fail) {
+        drop_zone.removeFile(file);
+        alert(response.message);
+      };
 		});
     drop_zone.on("canceled",function(file,response){
   //    ajax_loader.hide();
