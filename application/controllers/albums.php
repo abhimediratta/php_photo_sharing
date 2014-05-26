@@ -60,18 +60,31 @@ class Albums extends CI_Controller {
 		if(isset($_FILES['file'])) {
 	  		$this->load->model('album_model');
 	  		//system("file -bi $uploadedfile")
-	  		$test_file='';
-	  		system("file -brief --mime-type ".escapeshellarg($_FILES['file']['tmp_name']),$test_file);
+	  		//log_message('debug',"test".print_r($_FILES['file']['tmp_name']));
+	  		$finfo = finfo_open(FILEINFO_MIME_TYPE);
+	  		
+  			$file_type=finfo_file($finfo, $_FILES['file']['tmp_name']);
+	  		finfo_close($finfo);
+	  		if (strpos($file_type,'image') !== false) {
+    			$this->album_model->add_photo();
+			}
+			else{
+				header('Content-Type: application/json');
+				$respone_array=array('fail' => true,'message'=>'Please check if the file is an image!' );
+				echo json_encode($respone_array);
+			}
+	  		//$test_file='';
+	  		//system("file --mime-type ".escapeshellarg($_FILES['file']['tmp_name']),$test_file);
 	  		//$file_type = @mime_content_type($_FILES['file']['tmp_name']);
 	  		//$this->output->set_output(json_encode(array('foo' => $file_type)));
 	  		//print_r($file_type);
 	  		//$info = getimagesize($_FILES['file']['tmp_name']);
     		//print image_type_to_mime_type($info[2]);
     		//print_r($info[2]);
-	  		log_message('debug',print_r($test_file));
+	  		//log_message('debug',print_r($test_file));
 			//log_message('debug',print_r(IMAGETYPE_IFF));
 			//if (strlen($this->file_type) > 0) return;
-	  		//$this->album_model->add_photo();
+	  		//
 		}
 	}
 
